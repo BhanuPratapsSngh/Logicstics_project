@@ -1,0 +1,8 @@
+# Analysis libraries (nothing exotic)
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+seaborn>=0.13
+
+# To execute the notebook from the command line (optional)
+# jupyter nbconvert ipykernel
