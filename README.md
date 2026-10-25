@@ -1,30 +1,5 @@
 # FedEx Logistics Performance Analysis — SCMS Delivery History (EDA)
 
-Exploratory data analysis of 10,324 commodity line items delivered to 43 countries (2006–2015). The project measures delivery reliability (delivered date vs scheduled date), finds where delays come from, and turns the findings into four data-backed recommendations.
-
-## How to run
-```bash
-pip install -r requirements.txt
-pip install jupyter            # if you do not already have it
-cd notebooks
-jupyter nbconvert --to notebook --execute --inplace SCMS_Complete_EDA_Project.ipynb   # or open it and choose Restart & Run All
-cd .. && python tools/qa_check.py                                                     # optional structural checks
-```
-The raw CSV must sit in `data/raw/`. All paths are relative; the notebook works from the repo root or from `notebooks/`. The run takes about a minute and writes 26 PNGs (200 dpi) to `visualizations/` and the cleaned dataset to `data/processed/`.
-
-## Folder tree
-```
-.
-├── data/
-│   ├── raw/SCMS_Delivery_History_Dataset.csv
-│   └── processed/SCMS_Delivery_History_Cleaned.csv
-├── notebooks/SCMS_Complete_EDA_Project.ipynb   # executed, outputs saved
-├── visualizations/01_… … 26_….png
-├── tools/qa_check.py                           # chart / section / word-count / path checks
-├── requirements.txt
-└── README.md
-```
-
 ## What the notebook does
 - **Cleaning:** repairs the BOM in the first column and the mojibake in "Côte d'Ivoire", parses two different date formats explicitly, keeps business sentinels (`Pre-PQ Process`, `N/A - From RDC`, `Weight Captured Separately`, `Freight Included in Commodity Cost`, …) as status columns, flags outliers instead of deleting them, and exports a 10,324-row cleaned file.
 - **Features:** `delivery_delay_days`, `delivery_performance`, `is_late`, `po_to_scheduled_days`, `po_to_delivered_days`, `recording_lag_days`, `order_year`, plus `scheduled_year` (used for trends because `order_year` is empty for RDC rows).
